@@ -8,9 +8,13 @@ view: users {
     sql: ${TABLE}.id ;;
   }
   dimension: age {
+    type: number
+    sql: ${TABLE}.age ;;
+  }
+  dimension: age_tier {
     type: tier
     tiers: [0,10,20,30,40,50,60,70,80,90]
-    sql: ${TABLE}.age ;;
+    sql: ${age} ;;
   }
   dimension: city {
     type: string
