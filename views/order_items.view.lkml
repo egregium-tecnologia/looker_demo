@@ -37,10 +37,6 @@ view: order_items {
     timeframes: [raw, time, date, week, month, quarter, year]
     sql: ${TABLE}.returned_at ;;
   }
-  dimension: sale_price {
-    type: number
-    sql: ${TABLE}.sale_price ;;
-  }
   dimension_group: shipped {
     type: time
     timeframes: [raw, time, date, week, month, quarter, year]
@@ -59,20 +55,24 @@ view: order_items {
     type: count
     drill_fields: [detail*]
   }
+  measure: sale_price {
+    type: number
+    sql: ${TABLE}.sale_price ;;
+  }
 
   # ----- Sets of fields for drilling ------
   set: detail {
     fields: [
-	id,
-	users.last_name,
-	users.id,
-	users.first_name,
-	inventory_items.id,
-	inventory_items.product_name,
-	products.name,
-	products.id,
-	orders.order_id
-	]
+  id,
+  users.last_name,
+  users.id,
+  users.first_name,
+  inventory_items.id,
+  inventory_items.product_name,
+  products.name,
+  products.id,
+  orders.order_id
+  ]
   }
 
 }

@@ -32,10 +32,6 @@ view: products {
     type: string
     sql: ${TABLE}.name ;;
   }
-  dimension: retail_price {
-    type: number
-    sql: ${TABLE}.retail_price ;;
-  }
   dimension: sku {
     type: string
     sql: ${TABLE}.sku ;;
@@ -44,17 +40,21 @@ view: products {
     type: count
     drill_fields: [detail*]
   }
+  dimension: retail_price {
+    type: number
+    sql: ${TABLE}.retail_price ;;
+  }
 
   # ----- Sets of fields for drilling ------
   set: detail {
     fields: [
-	id,
-	name,
-	distribution_centers.name,
-	distribution_centers.id,
-	order_items.count,
-	inventory_items.count
-	]
+  id,
+  name,
+  distribution_centers.name,
+  distribution_centers.id,
+  order_items.count,
+  inventory_items.count
+  ]
   }
 
 }

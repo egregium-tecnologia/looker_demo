@@ -8,7 +8,8 @@ view: users {
     sql: ${TABLE}.id ;;
   }
   dimension: age {
-    type: number
+    type: tier
+    tiers: [0,10,20,30,40,50,60,70,80,90]
     sql: ${TABLE}.age ;;
   }
   dimension: city {
@@ -73,13 +74,13 @@ view: users {
   # ----- Sets of fields for drilling ------
   set: detail {
     fields: [
-	id,
-	last_name,
-	first_name,
-	order_items.count,
-	orders.count,
-	events.count
-	]
+  id,
+  last_name,
+  first_name,
+  order_items.count,
+  orders.count,
+  events.count
+  ]
   }
 
 }
