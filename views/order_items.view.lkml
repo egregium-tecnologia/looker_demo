@@ -32,6 +32,10 @@ view: order_items {
     # hidden: yes
     sql: ${TABLE}.product_id ;;
   }
+  dimension: sale_price {
+    type: number
+    sql: ${TABLE}.sale_price ;;
+  }
   dimension_group: returned {
     type: time
     timeframes: [raw, time, date, week, month, quarter, year]
@@ -55,10 +59,12 @@ view: order_items {
     type: count
     drill_fields: [detail*]
   }
-  measure: sale_price {
-    type: number
-    sql: ${TABLE}.sale_price ;;
+  measure: sum_sale_price {
+    type: sum
+    value_format:"$#,###.00;($#,###.00)"
+    sql: ${sale_price} ;;
   }
+
 
   # ----- Sets of fields for drilling ------
   set: detail {

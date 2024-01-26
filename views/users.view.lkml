@@ -20,6 +20,11 @@ view: users {
     type: string
     sql: ${TABLE}.city ;;
   }
+  dimension: county {
+    type: string
+    map_layer_name: us_zipcode_tabulation_areas
+    sql: ${city} ;;
+  }
   dimension: country {
     type: string
     map_layer_name: countries

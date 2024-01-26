@@ -19,6 +19,10 @@ view: products {
     type: number
     sql: ${TABLE}.cost ;;
   }
+  dimension: retail_price {
+    type: number
+    sql: ${TABLE}.retail_price ;;
+  }
   dimension: department {
     type: string
     sql: ${TABLE}.department ;;
@@ -40,9 +44,21 @@ view: products {
     type: count
     drill_fields: [detail*]
   }
-  dimension: retail_price {
-    type: number
-    sql: ${TABLE}.retail_price ;;
+  measure: sum_cost {
+    type: sum
+    sql: ${cost} ;;
+  }
+  measure: sum_retail_price {
+    type: sum
+    sql: ${retail_price} ;;
+  }
+  measure: avg_cost {
+    type: average
+    sql: ${cost} ;;
+  }
+  measure: avg_retail_price {
+    type: average
+    sql: ${retail_price} ;;
   }
 
   # ----- Sets of fields for drilling ------

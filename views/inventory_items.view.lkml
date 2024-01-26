@@ -32,6 +32,10 @@ view: inventory_items {
     type: number
     sql: ${TABLE}.product_distribution_center_id ;;
   }
+  dimension: product_retail_price {
+    type: number
+    sql: ${TABLE}.product_retail_price ;;
+  }
   dimension: product_id {
     type: number
     # hidden: yes
@@ -40,10 +44,6 @@ view: inventory_items {
   dimension: product_name {
     type: string
     sql: ${TABLE}.product_name ;;
-  }
-  dimension: product_retail_price {
-    type: number
-    sql: ${TABLE}.product_retail_price ;;
   }
   dimension: product_sku {
     type: string
@@ -57,5 +57,13 @@ view: inventory_items {
   measure: count {
     type: count
     drill_fields: [id, product_name, products.name, products.id, order_items.count]
+  }
+  measure: sum_product_retail_price {
+    type: sum
+    sql: ${product_retail_price} ;;
+  }
+  measure: avg_product_retail_price {
+    type: average
+    sql: ${product_retail_price} ;;
   }
 }
