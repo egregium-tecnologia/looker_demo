@@ -62,6 +62,7 @@ view: order_items {
   measure: sum_sale_price {
     type: sum
     value_format:"$#,###.00;($#,###.00)"
+    drill_fields: [detail*]
     sql: ${sale_price} ;;
   }
 
