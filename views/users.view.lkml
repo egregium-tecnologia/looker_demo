@@ -11,6 +11,10 @@ view: users {
     type: number
     sql: ${TABLE}.age ;;
   }
+  dimension: under_18 {
+    type: yesno
+    sql: ${age};;
+  }
   dimension: age_tier {
     type: tier
     tiers: [0,10,20,30,40,50,60,70,80,90]
@@ -58,6 +62,11 @@ view: users {
   dimension: longitude {
     type: number
     sql: ${TABLE}.longitude ;;
+  }
+  dimension: localidade {
+    type: location
+    sql_latitude: ${latitude};;
+    sql_longitude:${longitude};;
   }
   dimension: postal_code {
     type: string
