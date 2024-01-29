@@ -17,6 +17,12 @@ view: order_items {
     timeframes: [raw, time, date, week, month, quarter, year]
     sql: ${TABLE}.delivered_at ;;
   }
+  dimension_group: fulfillment {
+    type: duration
+    intervals: [week,hour,month]
+    sql_start: ${created_raw};;
+    sql_end: ${delivered_raw} ;;
+  }
   dimension: inventory_item_id {
     type: number
     # hidden: yes
