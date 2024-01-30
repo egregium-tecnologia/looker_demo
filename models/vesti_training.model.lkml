@@ -2,6 +2,7 @@ connection: "demolooker_ecommerce"
 
 # include all the views
 include: "/views/**/*.view.lkml"
+include: "/dashboards/**/*.dashboard.lookml"
 
 datagroup: vesti_training_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
@@ -13,6 +14,7 @@ persist_with: vesti_training_default_datagroup
 explore: distribution_centers {}
 
 explore: order_items {
+  sql_always_where: ${created_date} >= "2017-01-01" ;;
   join: users {
     type: left_outer
     sql_on: ${order_items.user_id} = ${users.id} ;;
