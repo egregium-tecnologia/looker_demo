@@ -13,7 +13,7 @@ view: users {
   }
   dimension: under_18 {
     type: yesno
-    sql: ${age};;
+    sql: ${age} < 18;;
   }
   dimension: age_tier {
     type: tier
