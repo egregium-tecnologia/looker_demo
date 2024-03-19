@@ -68,7 +68,7 @@ view: order_items {
   }
   measure: sum_sale_price {
     type: sum
-    value_format:"$#,###.00;($#,###.00)"
+    value_format:"\"R$ \"#,###.00;($#,###.00)"
     drill_fields: [detail*]
     sql: ${sale_price} ;;
   }
@@ -89,4 +89,33 @@ view: order_items {
   ]
   }
 
+}
+
+
+view: customer_order_summary {
+  derived_table: {
+    sql: SELECT
+        user_id as customer_id,
+        MIN(DATE(created_at)) AS first_order,
+        SUM(sale_price) AS total_amount
+      FROM
+        order_items
+      GROUP BY
+        user_id ;;
+  }
+  dimension: customer_id {
+    type: number
+    primary_key: yes
+    sql: ${TABLE}.customer_id ;;
+  }
+  dimension_group: first_order {
+    type: time
+    timeframes: [date, week, month]
+    sql: ${TABLE}.first_order ;;
+  }
+  dimension: total_amount {
+    type: number
+    value_format: "0.00"
+    sql: ${TABLE}.total_amount ;;
+  }
 }

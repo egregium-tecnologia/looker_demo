@@ -65,6 +65,34 @@ view: inventory_items {
   }
   measure: avg_product_retail_price {
     type: average
+    value_format: "$#,###.00;($#,###.00)"
     sql: ${product_retail_price} ;;
+  }
+}
+
+
+# If necessary, uncomment the line below to include explore_source.
+# include: "vesti_training.model.lkml"
+
+view: sales_per_department {
+  derived_table: {
+    explore_source: order_items {
+      column: product_department { field: inventory_items.product_department }
+      column: avg_product_retail_price { field: inventory_items.avg_product_retail_price }
+      column: sum_sale_price {}
+    }
+  }
+  dimension: product_department {
+    description: ""
+  }
+  dimension: avg_product_retail_price {
+    description: ""
+    value_format: "$#,###.00;($#,###.00)"
+    type: number
+  }
+  dimension: sum_sale_price {
+    description: ""
+    value_format: "$#,###.00;($#,###.00)"
+    type: number
   }
 }

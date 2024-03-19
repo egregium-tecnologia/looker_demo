@@ -7,7 +7,7 @@
   elements:
   - title: Demo Dashboard
     name: Demo Dashboard
-    model: vesti_training
+    model: demo_training
     explore: users
     type: looker_bar
     fields: [users.country, users.city, users.count]
@@ -84,7 +84,7 @@
     height: 12
   - title: Countries per Region
     name: Countries per Region
-    model: vesti_training
+    model: demo_training
     explore: users
     type: looker_pie
     fields: [users.count, users.country]
@@ -164,7 +164,7 @@
     height:
   - title: new look
     name: new look
-    model: vesti_training
+    model: demo_training
     explore: users
     type: looker_line
     fields: [users.count, users.created_month]
@@ -273,9 +273,9 @@
     col:
     width:
     height:
-  - title: Vendas Allan
-    name: Vendas Allan
-    model: vesti_training
+  - title: Vendas
+    name: Vendas
+    model: demo_training
     explore: order_items
     type: looker_column
     fields: [price_average_allan, faixa_etaria, users.gender]
@@ -407,7 +407,7 @@
     ui_config:
       type: advanced
       display: popover
-    model: vesti_training
+    model: demo_training
     explore: users
     listens_to_filters: []
     field: users.country

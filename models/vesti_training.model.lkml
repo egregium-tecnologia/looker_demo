@@ -4,12 +4,12 @@ connection: "demolooker_ecommerce"
 include: "/views/**/*.view.lkml"
 include: "/dashboards/**/*.dashboard.lookml"
 
-datagroup: vesti_training_default_datagroup {
+datagroup: demo_training_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
   max_cache_age: "1 hour"
 }
 
-persist_with: vesti_training_default_datagroup
+persist_with: demo_training_default_datagroup
 
 explore: distribution_centers {}
 
@@ -46,7 +46,9 @@ explore: order_items {
   }
 }
 
-explore: users {}
+explore: users {
+  persist_for: "1 hour"
+}
 
 explore: products {
   join: distribution_centers {
@@ -85,3 +87,9 @@ explore: events {
     relationship: many_to_one
   }
 }
+
+explore: names_2022 {}
+
+explore: customer_order_summary {}
+
+explore: sales_per_department {}
